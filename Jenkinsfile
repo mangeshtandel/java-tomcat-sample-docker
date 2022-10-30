@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Build Application') {
             steps {
-                sh 'export MAVEN_HOME=/opt/maven'
-                sh 'export PATH=$PATH:$MAVEN_HOME/bin'
+                //sh 'export MAVEN_HOME=/opt/maven'
+                //sh 'export PATH=$PATH:$MAVEN_HOME/bin'
                 sh 'mvn -f pom.xml clean package'
             }
             post {
