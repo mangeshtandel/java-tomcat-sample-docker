@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build Application') {
             steps {
-                sh '/usr/bin/mvn -f pom.xml clean package'
+                sh 'export MAVEN_HOME=/opt/maven'
+                sh 'export PATH=$PATH:$MAVEN_HOME/bin'
+                sh 'mvn -f pom.xml clean package'
             }
             post {
                 success {
@@ -20,6 +22,5 @@ pipeline {
                 sh "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
             }
         }
-
     }
 }
