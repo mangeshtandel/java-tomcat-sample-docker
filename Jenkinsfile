@@ -21,5 +21,4 @@ pipeline {
                 sh "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
             }
         }
-
-    }
+}
