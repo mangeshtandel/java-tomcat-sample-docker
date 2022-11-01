@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'M3'
+        maven 'localMaven'
     }
     stages {
         stage('Build Application') {
@@ -11,7 +11,7 @@ pipeline {
             post {
                 success {
                     echo "Now Archiving the Artifacts...."
-                    archiveArtifacts artifacts; '**/*.war'
+                    archiveArtifacts artifacts: '**/*.war'
                 }
             }
         }
