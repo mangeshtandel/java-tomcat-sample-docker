@@ -1,9 +1,13 @@
 pipeline {
     agent any
+    tools { 
+      maven 'MAVEN_HOME' 
+      jdk 'JAVA_HOME' 
+    }
     stages {
         stage('Build Application') {
             steps {
-                sh '/usr/share/maven/bin/mvn -f pom.xml clean package'
+                sh 'mvn -f pom.xml clean package'
             }
             post {
                 success {
