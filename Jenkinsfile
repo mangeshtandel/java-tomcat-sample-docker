@@ -2,9 +2,8 @@ pipeline {
     agent any
     stages {
         stage('Build Application') {
-                withMaven(maven: 'mvn'){
-                    sh "mvn -f pom.xml clean package"
-                }
+            steps {
+                sh 'mvn -f pom.xml clean package'
             }
             post {
                 success {
@@ -21,4 +20,6 @@ pipeline {
                 sh "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
             }
         }
+
+    }
 }
