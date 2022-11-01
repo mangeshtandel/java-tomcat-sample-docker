@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build Application') {
             steps {
-                sh 'mvn -f pom.xml clean package'
+                withMaven(maven: 'mvn'){
+                    sh 'mvn -f pom.xml clean package'
+                }
             }
             post {
                 success {
