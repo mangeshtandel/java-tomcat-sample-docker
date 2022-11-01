@@ -1,16 +1,13 @@
 pipeline {
     agent any
-    tools { 
-        maven 'localMaven' 
-        jdk 'localJava' 
+    tools {
+    maven 'M3'
     }
     stages {
-        stage('Initialize') {
-            steps {
-               echo "PATH = ${PATH}"
-               echo "M2_HOME = ${M2_HOME}"
-            }
+        stage('init') {
+            checkout scm
         }
+        
         stage('Build Application') {
             steps {
                 sh 'mvn -f pom.xml clean package'
@@ -18,7 +15,7 @@ pipeline {
             post {
                 success {
                     echo "Now Archiving the Artifacts...."
-                    archiveArtifacts artifacts: '**/*.war'
+                    archiveArtifacts artifacts; '**/*.war'
                 }
             }
         }
