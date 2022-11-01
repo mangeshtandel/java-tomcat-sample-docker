@@ -1,13 +1,9 @@
 pipeline {
     agent any
     tools {
-    maven 'M3'
+        maven 'M3'
     }
     stages {
-        stage('init') {
-            checkout scm
-        }
-        
         stage('Build Application') {
             steps {
                 sh 'mvn -f pom.xml clean package'
